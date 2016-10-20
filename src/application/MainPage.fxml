@@ -4,23 +4,35 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainPage">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" stylesheets="@MainPage.css"
+	xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="application.MainPage">
 	<top>
 		<MenuBar prefWidth="100.0" BorderPane.alignment="CENTER">
 			<menus>
 				<Menu mnemonicParsing="false" text="File">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Close" />
+						<MenuItem mnemonicParsing="false" text="New" />
+						<MenuItem mnemonicParsing="false" text="Open File..." />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem mnemonicParsing="false" text="Save" />
+						<MenuItem mnemonicParsing="false" text="Save As" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem mnemonicParsing="false" text="Exit" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Edit">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Delete" />
+						<MenuItem mnemonicParsing="false" text="Group" />
+						<MenuItem mnemonicParsing="false" text="UnGroup" />
 					</items>
 				</Menu>
 			</menus>
@@ -29,19 +41,28 @@
 	<center>
 		<ScrollPane BorderPane.alignment="CENTER">
 			<content>
-				<Pane />
+				<Pane styleClass="pane" />
 			</content>
 		</ScrollPane>
 	</center>
 	<left>
-		<VBox BorderPane.alignment="CENTER">
+		<VBox>
 			<children>
-				<ToggleButton mnemonicParsing="false" onAction="#test" text="Select" />
-				<ToggleButton mnemonicParsing="false" text="Association" />
-				<ToggleButton mnemonicParsing="false" text="Generalization" />
-				<ToggleButton mnemonicParsing="false" text="Composition" />
-				<ToggleButton mnemonicParsing="false" text="Class" />
-				<ToggleButton mnemonicParsing="false" text="Use Case" />
+				<fx:define>
+					<ToggleGroup fx:id="UMLElement" />
+				</fx:define>
+				<ToggleButton mnemonicParsing="false" text="Select"
+					toggleGroup="$UMLElement" />
+				<ToggleButton mnemonicParsing="false" text="Association"
+					toggleGroup="$UMLElement" />
+				<ToggleButton mnemonicParsing="false" text="Generalization"
+					toggleGroup="$UMLElement" />
+				<ToggleButton mnemonicParsing="false" text="Composition"
+					toggleGroup="$UMLElement" />
+				<ToggleButton mnemonicParsing="false" text="Class"
+					toggleGroup="$UMLElement" />
+				<ToggleButton mnemonicParsing="false" text="Use Case"
+					toggleGroup="$UMLElement" />
 			</children>
 		</VBox>
 	</left>
