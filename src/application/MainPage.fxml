@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainPage">
+	<top>
+		<MenuBar prefWidth="100.0" BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="false" text="File">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Close" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Edit">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Delete" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+	</top>
+	<center>
+		<ScrollPane BorderPane.alignment="CENTER">
+			<content>
+				<Pane />
+			</content>
+		</ScrollPane>
+	</center>
+	<left>
+		<VBox BorderPane.alignment="CENTER">
+			<children>
+				<ToggleButton mnemonicParsing="false" onAction="#test" text="Select" />
+				<ToggleButton mnemonicParsing="false" text="Association" />
+				<ToggleButton mnemonicParsing="false" text="Generalization" />
+				<ToggleButton mnemonicParsing="false" text="Composition" />
+				<ToggleButton mnemonicParsing="false" text="Class" />
+				<ToggleButton mnemonicParsing="false" text="Use Case" />
+			</children>
+		</VBox>
+	</left>
+</BorderPane>
