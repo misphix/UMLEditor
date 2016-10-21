@@ -41,7 +41,7 @@
 	<center>
 		<ScrollPane BorderPane.alignment="CENTER">
 			<content>
-				<Pane styleClass="pane" />
+				<Pane styleClass="pane" onMouseClicked="#test"/>
 			</content>
 		</ScrollPane>
 	</center>
