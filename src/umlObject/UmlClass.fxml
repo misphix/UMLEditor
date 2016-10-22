@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.StackPane?>
 
 <fx:root type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/8.0.60"
-	stylesheets="@UmlClass.css" xmlns:fx="http://javafx.com/fxml">
+	stylesheets="@UmlShape.css" xmlns:fx="http://javafx.com/fxml">
 	<StackPane prefHeight="30.0" prefWidth="100.0">
 		<children>
 			<Rectangle fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE"

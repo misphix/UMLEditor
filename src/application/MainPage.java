@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import umlObject.UmlOperation;
 import umlObject.UmlShape;
-import umlObject.UmlShapeGenerator;
+import umlObject.UmlShapeFactory;
 
 public class MainPage {
 	@FXML
@@ -18,7 +18,7 @@ public class MainPage {
 	@FXML
 	private Pane canvas;
 	private Map<String, UmlOperation> operation;
-	private UmlShapeGenerator shapeGen;
+	private UmlShapeFactory shapeGen;
 
 	public MainPage() {
 		operation = new HashMap<String, UmlOperation>();
@@ -28,21 +28,19 @@ public class MainPage {
 		operation.put("Composition", UmlOperation.COMPOSITION);
 		operation.put("Class", UmlOperation.CLASS);
 		operation.put("Use Case", UmlOperation.USU_CASE);
-		shapeGen = new UmlShapeGenerator();
+		shapeGen = new UmlShapeFactory();
 	}
 
-	public void test(MouseEvent e) {
-		Toggle selectType = umlElement.getSelectedToggle();
-		if (selectType instanceof ToggleButton) {
+	public void canvasClickedListener(MouseEvent e) {
+		try {
+			Toggle selectType = umlElement.getSelectedToggle();
 			ToggleButton btn = (ToggleButton) selectType;
 			UmlOperation type = operation.get(btn.getText());
-			try {
-				UmlShape shape = shapeGen.getShape(type);
-				shape.setPosition(e.getX(), e.getY());
-				canvas.getChildren().add(shape);
-			} catch (NullPointerException ev) {
-				
-			}
+			UmlShape shape = shapeGen.getShape(type);
+			shape.setPosition(e.getX(), e.getY());
+			canvas.getChildren().add(shape);
+		} catch (NullPointerException event) {
+			return;
 		}
 	}
 }

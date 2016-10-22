@@ -1,8 +1,8 @@
 package umlObject;
 
-public class UmlShapeGenerator {
+public class UmlShapeFactory {
 	
-	public UmlShapeGenerator() {
+	public UmlShapeFactory() {
 		
 	}
 	
