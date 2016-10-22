@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+<fx:root type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/8.0.60"
+	stylesheets="@UmlClass.css" xmlns:fx="http://javafx.com/fxml">
+	<StackPane prefHeight="30.0" prefWidth="100.0">
+		<children>
+			<Rectangle fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE"
+				layoutY="0.0" height="30.0" width="100.0" />
+			<Text fx:id="className" strokeType="OUTSIDE" strokeWidth="0.0"
+				styleClass="class-text" text="Class" />
+		</children>
+	</StackPane>
+	<Rectangle fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE"
+		layoutY="30.0" height="50.0" width="100.0" />
+	<Rectangle fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE"
+		layoutY="80.0" height="50.0" width="100.0" />
+</fx:root>
+

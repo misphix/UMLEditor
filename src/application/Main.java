@@ -11,7 +11,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-			Scene scene = new Scene(root,800,600);
+			Scene scene = new Scene(root, 800, 600);
 			primaryStage.setTitle("UMLeditor");
 			primaryStage.setScene(scene);
 			primaryStage.show();

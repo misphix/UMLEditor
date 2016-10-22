@@ -41,7 +41,7 @@
 	<center>
 		<ScrollPane BorderPane.alignment="CENTER">
 			<content>
-				<Pane styleClass="pane" onMouseClicked="#test"/>
+				<Pane fx:id="canvas" styleClass="pane" onMouseClicked="#test"/>
 			</content>
 		</ScrollPane>
 	</center>
@@ -49,20 +49,20 @@
 		<VBox>
 			<children>
 				<fx:define>
-					<ToggleGroup fx:id="UMLElement" />
+					<ToggleGroup fx:id="umlElement" />
 				</fx:define>
 				<ToggleButton mnemonicParsing="false" text="Select"
-					toggleGroup="$UMLElement" />
+					toggleGroup="$umlElement" />
 				<ToggleButton mnemonicParsing="false" text="Association"
-					toggleGroup="$UMLElement" />
+					toggleGroup="$umlElement" />
 				<ToggleButton mnemonicParsing="false" text="Generalization"
-					toggleGroup="$UMLElement" />
+					toggleGroup="$umlElement" />
 				<ToggleButton mnemonicParsing="false" text="Composition"
-					toggleGroup="$UMLElement" />
+					toggleGroup="$umlElement" />
 				<ToggleButton mnemonicParsing="false" text="Class"
-					toggleGroup="$UMLElement" />
+					toggleGroup="$umlElement" />
 				<ToggleButton mnemonicParsing="false" text="Use Case"
-					toggleGroup="$UMLElement" />
+					toggleGroup="$umlElement" />
 			</children>
 		</VBox>
 	</left>
