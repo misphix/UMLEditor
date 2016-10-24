@@ -9,9 +9,9 @@ public class UmlShapeFactory {
 	public UmlShape getShape(UmlOperation type) {
 		switch (type) {
 		case CLASS:
-			return new UmlClass();
-		case USU_CASE:
-			return new UmlUseCase();
+			return new UmlClass("Class");
+		case USE_CASE:
+			return new UmlUseCase("Use Case");
 		default:
 			return null;
 		}

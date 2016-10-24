@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.Ellipse?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
 
-<fx:root type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/8.0.60"
-	stylesheets="@UmlShape.css" xmlns:fx="http://javafx.com/fxml">
+<fx:root stylesheets="@UmlShape.css" type="javafx.scene.layout.Pane"
+	xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
 	<StackPane prefHeight="50.0" prefWidth="100.0">
 		<children>
 			<Ellipse fill="DODGERBLUE" radiusX="60.0" radiusY="30.0"
 				stroke="BLACK" strokeType="INSIDE" />
-			<Text fx:id="useCaseName" styleClass="use-case-text" strokeType="OUTSIDE" strokeWidth="0.0" text="Use Case" />
+			<Text fx:id="useCaseName" strokeType="OUTSIDE" strokeWidth="0.0"
+				styleClass="use-case-text" text="Use Case" />
 		</children>
 	</StackPane>
+	<Group fx:id="connectPoints" layoutX="-5.0" layoutY="-5.0"
+		visible="false">
+		<children>
+			<Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0"
+				layoutX="120.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE"
+				width="10.0" />
+			<Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0"
+				layoutX="60.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE"
+				width="10.0" />
+			<Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0"
+				layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+			<Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0"
+				layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+		</children>
+	</Group>
 </fx:root>
-
