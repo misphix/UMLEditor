@@ -1,10 +1,13 @@
 package application;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.Toggle;
@@ -16,7 +19,7 @@ import umlObject.UmlOperation;
 import umlObject.UmlShape;
 import umlObject.UmlShapeFactory;
 
-public class MainPage {
+public class Controller implements Initializable {
 	@FXML
 	private ToggleGroup umlElement;
 	@FXML
@@ -25,8 +28,9 @@ public class MainPage {
 	private UmlShapeFactory shapeGen;
 	private UmlShape selectedShape = null;
 	private Point2D mousePressed;
+	private UmlOperation type = null;
 
-	public MainPage() {
+	public Controller() {
 		operation = new HashMap<String, UmlOperation>();
 		operation.put("Select", UmlOperation.SELECT);
 		operation.put("Association", UmlOperation.ASSOCIATION);
@@ -37,12 +41,22 @@ public class MainPage {
 		shapeGen = new UmlShapeFactory();
 	}
 	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		umlElement.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
+			try {
+				Toggle selectType = umlElement.getSelectedToggle();
+				ToggleButton btn = (ToggleButton) selectType;
+				type = operation.get(btn.getText());
+			} catch (NullPointerException event) {
+				return;
+			}
+		});
+	}
+	
 	@FXML
 	private void canvasPressedListener(MouseEvent e) {
 		try {
-			Toggle selectType = umlElement.getSelectedToggle();
-			ToggleButton btn = (ToggleButton) selectType;
-			UmlOperation type = operation.get(btn.getText());
 			switch (type) {
 			case SELECT:
 				selectPressedHandler(e);
@@ -68,9 +82,6 @@ public class MainPage {
 		mousePressed = new Point2D(e.getX(), e.getY());
 		
 		try {
-			Toggle selectType = umlElement.getSelectedToggle();
-			ToggleButton btn = (ToggleButton) selectType;
-			UmlOperation type = operation.get(btn.getText());
 			switch (type) {
 			case SELECT:
 				selectedShape.relocate(selectedShape.getLayoutX() + dx, selectedShape.getLayoutY() + dy);
