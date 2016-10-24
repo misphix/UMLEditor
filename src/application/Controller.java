@@ -152,7 +152,7 @@ public class Controller implements Initializable {
 	}
 	
 	@FXML
-	private void canvasDragReleasedListener(MouseEvent e) {
+	private void canvasMouseReleasedListener(MouseEvent e) {
 		selectedArea.setVisible(false);
 	}
 }
