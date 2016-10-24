@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -52,7 +51,7 @@ public class Controller implements Initializable {
 				ToggleButton btn = (ToggleButton) selectType;
 				type = operation.get(btn.getText());
 			} catch (NullPointerException event) {
-				return;
+				type = null;
 			}
 		});
 	}
