@@ -41,7 +41,8 @@
 	<center>
 		<ScrollPane BorderPane.alignment="CENTER">
 			<content>
-				<Pane fx:id="canvas" styleClass="pane" onMousePressed="#canvasPressedListener" onMouseDragged="#canvasDragedListener"/>
+				<Pane fx:id="canvas" styleClass="pane" onMousePressed="#canvasPressedListener"
+					onMouseDragged="#canvasDragedListener" onMouseReleased="#canvasDragReleasedListener" />
 			</content>
 		</ScrollPane>
 	</center>

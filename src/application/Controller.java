@@ -15,6 +15,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import umlObject.SelectedArea;
 import umlObject.UmlOperation;
 import umlObject.UmlShape;
 import umlObject.UmlShapeFactory;
@@ -29,6 +30,7 @@ public class Controller implements Initializable {
 	private UmlShape selectedShape = null;
 	private Point2D mousePressed;
 	private UmlOperation type = null;
+	private SelectedArea selectedArea = new SelectedArea();
 
 	public Controller() {
 		operation = new HashMap<String, UmlOperation>();
@@ -43,6 +45,7 @@ public class Controller implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		canvas.getChildren().add(selectedArea);
 		umlElement.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
 			try {
 				Toggle selectType = umlElement.getSelectedToggle();
@@ -75,30 +78,10 @@ public class Controller implements Initializable {
 		}
 	}
 	
-	@FXML
-	private void canvasDragedListener(MouseEvent e) {
-		double dx = e.getX() - mousePressed.getX();
-		double dy = e.getY() - mousePressed.getY();
-		mousePressed = new Point2D(e.getX(), e.getY());
-		
-		try {
-			switch (type) {
-			case SELECT:
-				selectedShape.relocate(selectedShape.getLayoutX() + dx, selectedShape.getLayoutY() + dy);
-				break;
-			default:
-				break;
-			}
-		} catch (NullPointerException event) {
-			return;
-		}
-		
-		
-	}
-
 	private void selectPressedHandler(MouseEvent e) {
 		ObservableList<Node> nodes = canvas.getChildren();
 		mousePressed = new Point2D(e.getX(), e.getY());
+		selectedArea.setPosition(e.getX(), e.getY());
 		unSelectAll();
 		for (int i = nodes.size() - 1; i >= 0; --i) {
 			Node node = nodes.get(i);
@@ -110,6 +93,8 @@ public class Controller implements Initializable {
 					shape.selected();
 				} catch (NullPointerException event) {
 					return;
+				} catch (ClassCastException event) {
+					
 				}
 				break;
 			}
@@ -128,7 +113,47 @@ public class Controller implements Initializable {
 				selectedShape = null;
 			} catch (NullPointerException event) {
 				return;
+			} catch (ClassCastException e) {
+				
 			}
 		}
+	}
+	
+	@FXML
+	private void canvasDragedListener(MouseEvent e) {
+		try {
+			switch (type) {
+			case SELECT:
+				if (selectedShape != null) {
+					moveSelectedShape(e);
+				} else {
+					DrawSelectedArea(e);
+				}
+				break;
+			default:
+				break;
+			}
+		} catch (NullPointerException event) {
+			return;
+		}
+	}
+	
+	private void moveSelectedShape(MouseEvent e) {
+		double dx = e.getX() - mousePressed.getX();
+		double dy = e.getY() - mousePressed.getY();
+		mousePressed = new Point2D(e.getX(), e.getY());
+		selectedShape.relocate(selectedShape.getLayoutX() + dx, selectedShape.getLayoutY() + dy);
+	}
+
+	private void DrawSelectedArea(MouseEvent e) {
+		Point2D end = new Point2D(e.getX(), e.getY());
+		
+		selectedArea.setVisible(true);
+		selectedArea.draw(mousePressed, end);
+	}
+	
+	@FXML
+	private void canvasDragReleasedListener(MouseEvent e) {
+		selectedArea.setVisible(false);
 	}
 }
