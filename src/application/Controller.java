@@ -1,9 +1,13 @@
 package application;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,7 +30,7 @@ public class Controller implements Initializable {
 	private Pane canvas;
 	private Map<String, UmlOperation> operation;
 	private UmlShapeFactory shapeGen;
-	private UmlShape selectedShape = null;
+	private List<UmlShape> selectedShapes = new ArrayList<UmlShape>();
 	private Point2D mousePressed;
 	private UmlOperation type = null;
 	private SelectedArea selectedArea = new SelectedArea();
@@ -52,6 +56,9 @@ public class Controller implements Initializable {
 				type = operation.get(btn.getText());
 			} catch (NullPointerException event) {
 				type = null;
+			}
+			if (type != UmlOperation.SELECT) {
+				unSelectAll();
 			}
 		});
 	}
@@ -88,7 +95,7 @@ public class Controller implements Initializable {
 			if (node.getBoundsInParent().contains(e.getX(), e.getY())) {
 				try {
 					UmlShape shape = (UmlShape) node;
-					selectedShape = shape;
+					selectedShapes.add(shape);
 					shape.selected();
 				} catch (NullPointerException event) {
 					return;
@@ -109,7 +116,7 @@ public class Controller implements Initializable {
 			try {
 				UmlShape shape = (UmlShape) node;
 				shape.unSelected();
-				selectedShape = null;
+				selectedShapes.clear();
 			} catch (NullPointerException event) {
 				return;
 			} catch (ClassCastException e) {
@@ -123,7 +130,7 @@ public class Controller implements Initializable {
 		try {
 			switch (type) {
 			case SELECT:
-				if (selectedShape != null) {
+				if (selectedShapes.size() != 0) {
 					moveSelectedShape(e);
 				} else {
 					DrawSelectedArea(e);
@@ -141,7 +148,9 @@ public class Controller implements Initializable {
 		double dx = e.getX() - mousePressed.getX();
 		double dy = e.getY() - mousePressed.getY();
 		mousePressed = new Point2D(e.getX(), e.getY());
-		selectedShape.relocate(selectedShape.getLayoutX() + dx, selectedShape.getLayoutY() + dy);
+		for (UmlShape selectedShape : selectedShapes) {
+			selectedShape.relocate(selectedShape.getLayoutX() + dx, selectedShape.getLayoutY() + dy);
+		}
 	}
 
 	private void DrawSelectedArea(MouseEvent e) {
@@ -153,6 +162,20 @@ public class Controller implements Initializable {
 	
 	@FXML
 	private void canvasMouseReleasedListener(MouseEvent e) {
+		shapeSelectedAreaContain();
 		selectedArea.setVisible(false);
+	}
+	
+	private void shapeSelectedAreaContain() {
+		if (selectedArea.isVisible()) {
+			List<Node> nodes = canvas.getChildren().stream().filter(e -> e instanceof UmlShape).collect(Collectors.toList());
+			List<Node> shapes = nodes.stream().filter(e -> selectedArea.getLayoutBounds().contains(e.getLayoutBounds())).collect(Collectors.toList());
+			
+			for (Node node : shapes) {
+				UmlShape shape = (UmlShape) node;
+				shape.selected();
+				selectedShapes.add(shape);
+			}
+		}
 	}
 }
