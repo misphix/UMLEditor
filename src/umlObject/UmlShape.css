@@ -5,3 +5,13 @@
 .use-case-text {
 	-fx-font: 12px "Source Code Pro";
 }
+
+.uml-group {
+	-fx-border-width: 2px;
+	-fx-border-color: blue;
+}
+
+.uml-shape-selected {
+	-fx-border-width: 5px;
+	-fx-border-color: red;
+}

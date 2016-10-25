@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -13,17 +14,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import umlObject.SelectedArea;
+import umlObject.UmlGroup;
 import umlObject.UmlOperation;
 import umlObject.UmlShape;
 import umlObject.UmlShapeFactory;
 
 public class Controller implements Initializable {
+	@FXML
+	private MenuItem property, group, ungroup;
 	@FXML
 	private ToggleGroup umlElement;
 	@FXML
@@ -61,6 +67,35 @@ public class Controller implements Initializable {
 				unSelectAll();
 			}
 		});
+	}
+	
+	@FXML
+	private void clickedGroupHandler() {
+		UmlGroup group = new UmlGroup();
+		group.add(selectedShapes);
+		canvas.getChildren().removeAll(selectedShapes);
+		canvas.getChildren().add(group);
+	}
+	
+	@FXML
+	private void clickedUngroupHandler() {
+		System.out.println("Ungroup");
+	}
+	
+	@FXML
+	private void clickedPropertiesHandler() {
+		try {
+			UmlShape shape = selectedShapes.get(0);
+			TextInputDialog dialog = new TextInputDialog(shape.getName());
+			dialog.setTitle("Property");
+			dialog.setHeaderText(null);
+			dialog.setContentText("Name:");
+	
+			Optional<String> result = dialog.showAndWait();
+			result.ifPresent(name -> shape.setName(name));
+		} catch (IndexOutOfBoundsException e) {
+			return;
+		}
 	}
 	
 	@FXML
@@ -117,6 +152,9 @@ public class Controller implements Initializable {
 				UmlShape shape = (UmlShape) node;
 				shape.unSelected();
 				selectedShapes.clear();
+				property.setDisable(true);
+				group.setDisable(true);
+				ungroup.setDisable(true);
 			} catch (NullPointerException event) {
 				return;
 			} catch (ClassCastException e) {
@@ -164,6 +202,11 @@ public class Controller implements Initializable {
 	private void canvasMouseReleasedListener(MouseEvent e) {
 		shapeSelectedAreaContain();
 		selectedArea.setVisible(false);
+		if (selectedShapes.size() == 1) {
+			property.setDisable(false);
+		} else if (selectedShapes.size() > 1) {
+			group.setDisable(false);
+		}
 	}
 	
 	private void shapeSelectedAreaContain() {

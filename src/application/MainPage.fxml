@@ -31,8 +31,13 @@
 				</Menu>
 				<Menu mnemonicParsing="false" text="Edit">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Group" />
-						<MenuItem mnemonicParsing="false" text="UnGroup" />
+						<MenuItem fx:id="group" mnemonicParsing="false" text="Group"
+							disable="true" onAction="#clickedGroupHandler" />
+						<MenuItem fx:id="ungroup" mnemonicParsing="false" text="UnGroup"
+							disable="true" onAction="#clickedUngroupHandler" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="property" mnemonicParsing="false" text="Property"
+							disable="true" onAction="#clickedPropertiesHandler" />
 					</items>
 				</Menu>
 			</menus>

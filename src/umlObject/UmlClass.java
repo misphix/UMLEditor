@@ -48,6 +48,7 @@ public class UmlClass extends UmlShape {
 	
 	@Override
 	public void unSelected() {
+		super.unSelected();
 		connectPoints.setVisible(false);
 	}
 	

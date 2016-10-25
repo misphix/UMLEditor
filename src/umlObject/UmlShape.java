@@ -4,6 +4,7 @@ import javafx.scene.layout.Pane;
 
 public abstract class UmlShape extends Pane {
 	protected String name;
+
 	
 	public UmlShape(String name) {
 		super();
@@ -27,7 +28,10 @@ public abstract class UmlShape extends Pane {
 		this.toFront();
 	}
 
-	public abstract void unSelected();
+	public void unSelected() {
+		this.getStyleClass().clear();
+		this.setStyleClass();
+	}
 	
 	protected abstract void setStyleClass();
 }
