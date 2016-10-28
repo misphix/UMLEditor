@@ -39,14 +39,18 @@ public class UmlLine extends Group {
 	
 	public void subscribeStartPoint(UmlShape shape, Rectangle port) {
 		shape.moveFlag.addListener((obs, oldVal, newVal) -> {
-			setStartPoint(shape.localToParent(port.getLayoutX(), port.getLayoutY()));
+			Point2D portScreenPoint = shape.localToScreen(port.getLayoutX(), port.getLayoutY());
+			Point2D portCanvasPoint = getParent().screenToLocal(portScreenPoint);
+			setStartPoint(portCanvasPoint);
 			toFront();
 		});
 	}
 	
 	public void subscribeEndPoint(UmlShape shape, Rectangle port) {
 		shape.moveFlag.addListener((obs, oldVal, newVal) -> {
-			setEndPoint(shape.localToParent(port.getLayoutX(), port.getLayoutY()));
+			Point2D portScreenPoint = shape.localToScreen(port.getLayoutX(), port.getLayoutY());
+			Point2D portCanvasPoint = getParent().screenToLocal(portScreenPoint);
+			setEndPoint(portCanvasPoint);
 			toFront();
 		});
 	}
