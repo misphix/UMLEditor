@@ -1,0 +1,18 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.toggle-button {
+	-fx-pref-width: 100px;
+}
+
+.pane {
+	-fx-pref-width: 1920px;
+	-fx-pref-height: 1080px;
+}
+
+.scroll-pane {
+	-fx-pref-width: 100%;
+	-fx-pref-height: 100%;
+}
+
+.uml-class {
+	-fx-fill: blue;
+}

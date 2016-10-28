@@ -1,0 +1,18 @@
+.class-text {
+	-fx-font: 12px "Source Code Pro";
+}
+
+.use-case-text {
+	-fx-font: 12px "Source Code Pro";
+}
+
+.uml-group {
+	-fx-border-width: 2px;
+	-fx-border-color: blue;
+}
+
+.uml-shape-selected {
+	-fx-border-width: 5px;
+	-fx-border-color: red;
+	-fx-effect: dropshadow(two-pass-box, red, 10, 0, 0, 0) ;
+}
