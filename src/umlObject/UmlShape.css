@@ -14,4 +14,5 @@
 .uml-shape-selected {
 	-fx-border-width: 5px;
 	-fx-border-color: red;
+	-fx-effect: dropshadow(two-pass-box, red, 10, 0, 0, 0) ;
 }

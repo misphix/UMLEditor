@@ -34,7 +34,7 @@ public class UmlUseCase extends UmlShape {
 	}
 	
 	@Override
-	public void setPosition(double x, double y) {
+	public void setStartPosition(double x, double y) {
 		double width = 60;
 		double height = 30;
 		super.setPosition(x - width, y - height);

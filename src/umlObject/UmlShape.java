@@ -1,14 +1,15 @@
 package umlObject;
 
-import javafx.scene.layout.Pane;
+import javafx.scene.Group;
 
-public abstract class UmlShape extends Pane {
+public abstract class UmlShape extends Group {
 	protected String name;
 
 	
 	public UmlShape(String name) {
 		super();
 		this.name = name;
+
 	}
 	
 	public void setName(String name) {
@@ -31,6 +32,10 @@ public abstract class UmlShape extends Pane {
 	public void unSelected() {
 		this.getStyleClass().clear();
 		this.setStyleClass();
+	}
+
+	public void setStartPosition(double x, double y) {
+			
 	}
 	
 	protected abstract void setStyleClass();

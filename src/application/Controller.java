@@ -79,7 +79,15 @@ public class Controller implements Initializable {
 	
 	@FXML
 	private void clickedUngroupHandler() {
-		System.out.println("Ungroup");
+		UmlGroup group = (UmlGroup) selectedShapes.get(0);
+		double posX = group.getLayoutX(), posY = group.getLayoutY();
+		canvas.getChildren().remove(group);
+		for (Node node : group.getChildren()) {
+			node.setLayoutX(node.getLayoutX() + posX);
+			node.setLayoutY(node.getLayoutY() + posY);
+		}
+		canvas.getChildren().addAll(group.getChildren());
+		group.getChildren().clear();
 	}
 	
 	@FXML
@@ -108,8 +116,8 @@ public class Controller implements Initializable {
 			case CLASS:
 			case USE_CASE:
 				UmlShape shape = shapeGen.getShape(type);
-				shape.setPosition(e.getX(), e.getY());
-				canvas.getChildren().add(shape);
+				shape.setStartPosition(e.getX(), e.getY());
+				canvas.getChildren().add(shape);				
 				break;
 			default:
 				break;
@@ -127,7 +135,7 @@ public class Controller implements Initializable {
 		for (int i = nodes.size() - 1; i >= 0; --i) {
 			Node node = nodes.get(i);
 			
-			if (node.getBoundsInParent().contains(e.getX(), e.getY())) {
+			if (node.isPressed()) {
 				try {
 					UmlShape shape = (UmlShape) node;
 					selectedShapes.add(shape);
@@ -187,7 +195,7 @@ public class Controller implements Initializable {
 		double dy = e.getY() - mousePressed.getY();
 		mousePressed = new Point2D(e.getX(), e.getY());
 		for (UmlShape selectedShape : selectedShapes) {
-			selectedShape.relocate(selectedShape.getLayoutX() + dx, selectedShape.getLayoutY() + dy);
+			selectedShape.setPosition(selectedShape.getLayoutX() + dx, selectedShape.getLayoutY() + dy);
 		}
 	}
 
@@ -203,7 +211,11 @@ public class Controller implements Initializable {
 		shapeSelectedAreaContain();
 		selectedArea.setVisible(false);
 		if (selectedShapes.size() == 1) {
-			property.setDisable(false);
+			if (selectedShapes.get(0) instanceof UmlGroup) {
+				ungroup.setDisable(false);
+			} else {
+				property.setDisable(false);
+			}
 		} else if (selectedShapes.size() > 1) {
 			group.setDisable(false);
 		}
@@ -212,7 +224,7 @@ public class Controller implements Initializable {
 	private void shapeSelectedAreaContain() {
 		if (selectedArea.isVisible()) {
 			List<Node> nodes = canvas.getChildren().stream().filter(e -> e instanceof UmlShape).collect(Collectors.toList());
-			List<Node> shapes = nodes.stream().filter(e -> selectedArea.getLayoutBounds().contains(e.getLayoutBounds())).collect(Collectors.toList());
+			List<Node> shapes = nodes.stream().filter(e -> selectedArea.getBoundsInParent().contains(e.getBoundsInParent())).collect(Collectors.toList());
 			
 			for (Node node : shapes) {
 				UmlShape shape = (UmlShape) node;
