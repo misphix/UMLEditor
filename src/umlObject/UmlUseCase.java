@@ -1,10 +1,14 @@
 package umlObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 public class UmlUseCase extends UmlShape {
@@ -12,6 +16,9 @@ public class UmlUseCase extends UmlShape {
 	private Text useCaseName;
 	@FXML
 	private Group connectPoints;
+	@FXML
+	private Rectangle right, up, down, left;
+	private List<Rectangle> ports = new ArrayList<Rectangle>();
 	private final String styleClass = "uml-use-case";
 	
 	public UmlUseCase(String name) {
@@ -24,6 +31,10 @@ public class UmlUseCase extends UmlShape {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		ports.add(down);
+		ports.add(left);
+		ports.add(right);
+		ports.add(up);
 		setStyleClass();
 	}
 	
@@ -50,6 +61,22 @@ public class UmlUseCase extends UmlShape {
 	public void unSelected() {
 		super.unSelected();
 		connectPoints.setVisible(false);
+	}
+	
+	@Override
+	public Point2D getPort(Point2D clickPoint) {
+		double distanceMin = Double.MAX_VALUE;
+		Point2D closestPoint = null;
+		
+		for (Rectangle port : ports) {
+			double distanceNow = parentToLocal(clickPoint).distance(port.getLayoutX(), port.getLayoutY());
+			if ( distanceNow < distanceMin) {
+				distanceMin = distanceNow;
+				closestPoint = new Point2D(port.getLayoutX(), port.getLayoutY());
+			}
+		}
+		
+		return localToParent(closestPoint);
 	}
 	
 	@Override

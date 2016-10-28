@@ -2,6 +2,8 @@ package umlObject;
 
 import java.util.List;
 
+import javafx.geometry.Point2D;
+
 public class UmlGroup extends UmlShape {
 	private final String styleClass = "uml-group";
 	private final String selectedStyleClass = "uml-shape-selected";
@@ -33,6 +35,11 @@ public class UmlGroup extends UmlShape {
 		super.selected();
 		this.getStyleClass().clear();
 		this.getStyleClass().add(selectedStyleClass);
+	}
+	
+	@Override
+	public Point2D getPort(Point2D clickPoint) {
+		return null;
 	}
 	
 	@Override

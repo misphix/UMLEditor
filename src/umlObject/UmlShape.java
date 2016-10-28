@@ -1,5 +1,6 @@
 package umlObject;
 
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
 
 public abstract class UmlShape extends Group {
@@ -38,5 +39,6 @@ public abstract class UmlShape extends Group {
 			
 	}
 	
+	public abstract Point2D getPort(Point2D clickPoint);
 	protected abstract void setStyleClass();
 }

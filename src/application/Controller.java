@@ -23,6 +23,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import umlObject.SelectedArea;
 import umlObject.UmlGroup;
+import umlObject.UmlLine;
+import umlObject.UmlLineFactory;
 import umlObject.UmlOperation;
 import umlObject.UmlShape;
 import umlObject.UmlShapeFactory;
@@ -36,10 +38,12 @@ public class Controller implements Initializable {
 	private Pane canvas;
 	private Map<String, UmlOperation> operation;
 	private UmlShapeFactory shapeGen;
+	private UmlLineFactory lineGen;
 	private List<UmlShape> selectedShapes = new ArrayList<UmlShape>();
 	private Point2D mousePressed;
 	private UmlOperation type = null;
 	private SelectedArea selectedArea = new SelectedArea();
+	private UmlLine drawingLine = null;
 
 	public Controller() {
 		operation = new HashMap<String, UmlOperation>();
@@ -50,6 +54,7 @@ public class Controller implements Initializable {
 		operation.put("Class", UmlOperation.CLASS);
 		operation.put("Use Case", UmlOperation.USE_CASE);
 		shapeGen = new UmlShapeFactory();
+		lineGen = new UmlLineFactory();
 	}
 	
 	@Override
@@ -113,6 +118,11 @@ public class Controller implements Initializable {
 			case SELECT:
 				selectPressedHandler(e);
 				break;
+			case ASSOCIATION:
+			case GENERALIZATION:
+			case COMPOSITION:
+				drawLinePressHandler(e);
+				break;
 			case CLASS:
 			case USE_CASE:
 				UmlShape shape = shapeGen.getShape(type);
@@ -150,6 +160,31 @@ public class Controller implements Initializable {
 		}
 	}
 	
+	private void drawLinePressHandler(MouseEvent e) {
+		ObservableList<Node> nodes = canvas.getChildren();
+		mousePressed = new Point2D(e.getX(), e.getY());
+
+		for (int i = nodes.size() - 1; i >= 0; --i) {
+			Node node = nodes.get(i);
+			
+			if (node.isPressed()) {
+				try {
+					UmlShape shape = (UmlShape) node;
+					Point2D start = shape.getPort(mousePressed);
+					drawingLine = lineGen.getLine(type);
+					drawingLine.setStartPoint(start);
+					drawingLine.setEndPoint(start);
+					canvas.getChildren().add(drawingLine);
+				} catch (NullPointerException event) {
+					return;
+				} catch (ClassCastException event) {
+					continue;
+				}
+				break;
+			}
+		}
+	}
+	
 	private void unSelectAll() {
 		ObservableList<Node> nodes = canvas.getChildren();
 		
@@ -166,7 +201,7 @@ public class Controller implements Initializable {
 			} catch (NullPointerException event) {
 				return;
 			} catch (ClassCastException e) {
-				
+				continue;
 			}
 		}
 	}
@@ -181,6 +216,11 @@ public class Controller implements Initializable {
 				} else {
 					DrawSelectedArea(e);
 				}
+				break;
+			case ASSOCIATION:
+			case GENERALIZATION:
+			case COMPOSITION:
+				drawingLine.setEndPoint(new Point2D(e.getX(), e.getY()));
 				break;
 			default:
 				break;
@@ -208,6 +248,27 @@ public class Controller implements Initializable {
 	
 	@FXML
 	private void canvasMouseReleasedListener(MouseEvent e) {
+		try {
+			switch(type) {
+			case SELECT:
+				selectModeRelease();
+				break;
+			case ASSOCIATION:
+			case GENERALIZATION:
+			case COMPOSITION:
+				drawLineRelease(e);
+				break;
+			case CLASS:
+			case USE_CASE:
+			default:
+				break;
+			}
+		} catch (NullPointerException except) {
+			
+		}
+	}
+	
+	private void selectModeRelease() {
 		shapeSelectedAreaContain();
 		selectedArea.setVisible(false);
 		if (selectedShapes.size() == 1) {
@@ -232,5 +293,31 @@ public class Controller implements Initializable {
 				selectedShapes.add(shape);
 			}
 		}
+	}
+	
+	private void drawLineRelease(MouseEvent e) {
+		ObservableList<Node> nodes = canvas.getChildren();
+		Point2D mouseRelease = new Point2D(e.getX(), e.getY());
+
+		for (int i = nodes.size() - 1; i >= 0; --i) {
+			Node node = nodes.get(i);
+			
+			if (node.getBoundsInParent().contains(mouseRelease)) {
+				try {
+					UmlShape shape = (UmlShape) node;
+					Point2D end = shape.getPort(mouseRelease);
+					drawingLine.setEndPoint(end);
+				} catch (NullPointerException event) {
+					return;
+				} catch (ClassCastException event) {
+					continue;
+				}
+				drawingLine = null;
+				return;
+			}
+		}
+		
+		canvas.getChildren().remove(drawingLine);
+		drawingLine = null;
 	}
 }
