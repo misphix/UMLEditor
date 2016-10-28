@@ -64,19 +64,19 @@ public class UmlUseCase extends UmlShape {
 	}
 	
 	@Override
-	public Point2D getPort(Point2D clickPoint) {
+	public Rectangle getPort(Point2D clickPoint) {
 		double distanceMin = Double.MAX_VALUE;
-		Point2D closestPoint = null;
+		Rectangle closestPort = null;
 		
 		for (Rectangle port : ports) {
 			double distanceNow = parentToLocal(clickPoint).distance(port.getLayoutX(), port.getLayoutY());
 			if ( distanceNow < distanceMin) {
 				distanceMin = distanceNow;
-				closestPoint = new Point2D(port.getLayoutX(), port.getLayoutY());
+				closestPort = port;
 			}
 		}
 		
-		return localToParent(closestPoint);
+		return closestPort;
 	}
 	
 	@Override

@@ -3,6 +3,7 @@ package umlObject;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public class UmlLine extends Group {
@@ -18,6 +19,11 @@ public class UmlLine extends Group {
 		line.setStartY(start.getY());
 	}
 	
+	public void setStartPoint(Rectangle start) {
+		line.setStartX(start.getX());
+		line.setStartY(start.getY());
+	}
+	
 	public void setEndPoint(Point2D end) {
 		line.setEndX(end.getX());
 		line.setEndY(end.getY());
@@ -29,6 +35,20 @@ public class UmlLine extends Group {
 	
 	public Point2D getEndPoint() {
 		return new Point2D(line.getEndX(), line.getEndY());
+	}
+	
+	public void subscribeStartPoint(UmlShape shape, Rectangle port) {
+		shape.moveFlag.addListener((obs, oldVal, newVal) -> {
+			setStartPoint(shape.localToParent(port.getLayoutX(), port.getLayoutY()));
+			toFront();
+		});
+	}
+	
+	public void subscribeEndPoint(UmlShape shape, Rectangle port) {
+		shape.moveFlag.addListener((obs, oldVal, newVal) -> {
+			setEndPoint(shape.localToParent(port.getLayoutX(), port.getLayoutY()));
+			toFront();
+		});
 	}
 	
 	protected double getAngle() {

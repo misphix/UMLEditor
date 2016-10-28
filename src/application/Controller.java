@@ -21,6 +21,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import umlObject.SelectedArea;
 import umlObject.UmlGroup;
 import umlObject.UmlLine;
@@ -170,10 +171,11 @@ public class Controller implements Initializable {
 			if (node.isPressed()) {
 				try {
 					UmlShape shape = (UmlShape) node;
-					Point2D start = shape.getPort(mousePressed);
+					Rectangle start = shape.getPort(mousePressed);
 					drawingLine = lineGen.getLine(type);
-					drawingLine.setStartPoint(start);
-					drawingLine.setEndPoint(start);
+					drawingLine.setStartPoint(shape.localToParent(start.getLayoutX(), start.getLayoutY()));
+					drawingLine.setEndPoint(shape.localToParent(start.getLayoutX(), start.getLayoutY()));
+					drawingLine.subscribeStartPoint(shape, start);
 					canvas.getChildren().add(drawingLine);
 				} catch (NullPointerException event) {
 					return;
@@ -305,8 +307,9 @@ public class Controller implements Initializable {
 			if (node.getBoundsInParent().contains(mouseRelease)) {
 				try {
 					UmlShape shape = (UmlShape) node;
-					Point2D end = shape.getPort(mouseRelease);
-					drawingLine.setEndPoint(end);
+					Rectangle end = shape.getPort(mouseRelease);
+					drawingLine.setEndPoint(shape.localToParent(end.getLayoutX(), end.getLayoutY()));
+					drawingLine.subscribeEndPoint(shape, end);
 				} catch (NullPointerException event) {
 					return;
 				} catch (ClassCastException event) {

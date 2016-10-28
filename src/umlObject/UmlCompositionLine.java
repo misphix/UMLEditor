@@ -11,6 +11,12 @@ public class UmlCompositionLine extends UmlLine {
 	}
 	
 	@Override
+	public void setStartPoint(Point2D start) {
+		super.setStartPoint(start);
+		setShapePosition();
+	}
+	
+	@Override
 	public void setEndPoint(Point2D end) {
 		super.setEndPoint(end);
 		setShapePosition();

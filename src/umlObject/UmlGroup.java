@@ -2,7 +2,10 @@ package umlObject;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
+import javafx.scene.shape.Rectangle;
 
 public class UmlGroup extends UmlShape {
 	private final String styleClass = "uml-group";
@@ -38,9 +41,21 @@ public class UmlGroup extends UmlShape {
 	}
 	
 	@Override
-	public Point2D getPort(Point2D clickPoint) {
+	public Rectangle getPort(Point2D clickPoint) {
 		return null;
 	}
+	
+	@Override
+	protected void toggleMoveFlag() {
+		ObservableList<Node> children = getChildren();
+		for (Node child : children) {
+			UmlShape shape = (UmlShape) child;
+			shape.toggleMoveFlag();
+		}
+	}
+	
+	@Override
+	public void setStartPosition(double x, double y) {}
 	
 	@Override
 	protected void setStyleClass() {

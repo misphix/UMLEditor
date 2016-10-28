@@ -1,11 +1,14 @@
 package umlObject;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.shape.Rectangle;
 
 public abstract class UmlShape extends Group {
 	protected String name;
-
+	public BooleanProperty moveFlag = new SimpleBooleanProperty();
 	
 	public UmlShape(String name) {
 		super();
@@ -24,6 +27,7 @@ public abstract class UmlShape extends Group {
 	public void setPosition(double x, double y) {
 		setLayoutX(x);
 		setLayoutY(y);
+		toggleMoveFlag();
 	}
 	
 	public void selected() {
@@ -35,10 +39,11 @@ public abstract class UmlShape extends Group {
 		this.setStyleClass();
 	}
 
-	public void setStartPosition(double x, double y) {
-			
+	protected void toggleMoveFlag() {
+		moveFlag.set(!moveFlag.get());
 	}
 	
-	public abstract Point2D getPort(Point2D clickPoint);
+	public abstract void setStartPosition(double x, double y);
+	public abstract Rectangle getPort(Point2D clickPoint);
 	protected abstract void setStyleClass();
 }
