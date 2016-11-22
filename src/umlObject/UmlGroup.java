@@ -38,6 +38,20 @@ public class UmlGroup extends UmlShape {
 		super.selected();
 		this.getStyleClass().clear();
 		this.getStyleClass().add(selectedStyleClass);
+		ObservableList<Node> nodes = getChildren();
+		for (int counter = 0; counter < nodes.size(); counter++) {
+			UmlShape shape = (UmlShape) nodes.get(0);
+			shape.selected();
+		}
+	}
+	
+	@Override
+	public void unSelected() {
+		super.unSelected();
+		for (int counter = 0; counter < getChildren().size(); ++counter) {
+			UmlShape shape = (UmlShape) getChildren().get(counter);
+			shape.unSelected();
+		}
 	}
 	
 	@Override
