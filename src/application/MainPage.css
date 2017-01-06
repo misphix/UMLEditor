@@ -3,11 +3,6 @@
 	-fx-pref-width: 100px;
 }
 
-.pane {
-	-fx-pref-width: 1920px;
-	-fx-pref-height: 1080px;
-}
-
 .scroll-pane {
 	-fx-pref-width: 100%;
 	-fx-pref-height: 100%;
