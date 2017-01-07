@@ -15,7 +15,7 @@ public class Main extends Application {
             primaryStage.setTitle("UML Editor");
             primaryStage.setScene(scene);
             primaryStage.show();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

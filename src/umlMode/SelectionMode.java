@@ -2,9 +2,16 @@ package umlMode;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
+import umlObject.UmlObject;
+
+import java.util.List;
 
 public class SelectionMode extends UmlMode {
     private Point2D startPoint;
+
+    public SelectionMode(List<UmlObject> elements) {
+        super(elements);
+    }
 
     @Override
     public void mousePressEvent(MouseEvent event) {

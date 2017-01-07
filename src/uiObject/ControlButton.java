@@ -1,4 +1,4 @@
-package controlButton;
+package uiObject;
 
 import javafx.scene.control.ToggleButton;
 import umlMode.UmlMode;
