@@ -2,6 +2,7 @@ package umlObject;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.geometry.Point2D;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,17 @@ public abstract class UmlShape extends UmlObject {
         for (Port port : ports) {
             port.movePosition(dx, dy);
         }
+    }
+
+    @Override
+    public boolean contain(Point2D pos) {
+        return (pos.getX() > x && pos.getX() < x + width && pos.getY() > y && pos.getY() < y + height);
+    }
+
+    @Override
+    public boolean contain(Point2D start, Point2D end) {
+        // TODO
+        return false;
     }
 
     void portsInitialize() {

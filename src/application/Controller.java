@@ -1,6 +1,7 @@
 package application;
 
 import javafx.animation.AnimationTimer;
+import javafx.scene.canvas.GraphicsContext;
 import uiObject.ControlButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -70,6 +71,9 @@ public class Controller implements Initializable {
         drawer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                GraphicsContext gc = canvas.getGraphicsContext2D();
+                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
                 for (UmlObject obj : elements) {
                     obj.draw(canvas.getGraphicsContext2D());
                 }

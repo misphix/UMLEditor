@@ -1,5 +1,6 @@
 package umlObject;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class UmlObject {
@@ -36,4 +37,6 @@ public abstract class UmlObject {
     public abstract void beSelected();
     public abstract void unSelected();
     public abstract boolean isSelected();
+    public abstract boolean contain(Point2D pos);
+    public abstract boolean contain(Point2D start, Point2D end);
 }
