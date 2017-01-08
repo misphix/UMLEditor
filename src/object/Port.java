@@ -1,4 +1,4 @@
-package umlObject;
+package object;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;

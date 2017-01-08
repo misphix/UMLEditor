@@ -1,15 +1,15 @@
-package umlMode;
+package mode;
 
 import javafx.scene.input.MouseEvent;
-import umlObject.SelectionArea;
-import umlObject.UmlObject;
+import object.SelectionArea;
+import object.UmlObject;
 
 import java.util.List;
 
 public abstract class UmlMode {
-    final List<UmlObject> elements;
+    protected final List<UmlObject> elements;
 
-    UmlMode(List<UmlObject> elements) {
+    protected UmlMode(List<UmlObject> elements) {
         this.elements = elements;
     }
 

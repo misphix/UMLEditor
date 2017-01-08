@@ -1,7 +1,7 @@
-package uiObject;
+package ui;
 
 import javafx.scene.control.ToggleButton;
-import umlMode.UmlMode;
+import mode.UmlMode;
 
 public class ControlButton extends ToggleButton {
     private final UmlMode mode;

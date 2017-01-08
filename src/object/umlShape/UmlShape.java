@@ -1,8 +1,11 @@
-package umlObject;
+package object.umlShape;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Point2D;
+import object.Constants;
+import object.Port;
+import object.UmlObject;
 
 import java.util.ArrayList;
 import java.util.List;

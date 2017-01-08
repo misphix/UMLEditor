@@ -1,9 +1,10 @@
-package umlObject;
+package object.umlShape;
 
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
+import object.Port;
 
 public class UmlClass extends UmlShape {
     private final double CLASS_NAME_HEIGHT = 20, PROPERTY_HEIGHT = 30, METHOD_HEIGHT = 30;

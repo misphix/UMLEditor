@@ -1,7 +1,9 @@
-package umlObject;
+package object.umlLine;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.transform.Rotate;
+import object.Constants;
+import object.Port;
 
 public class UmlCompositionLine extends UmlLine {
 

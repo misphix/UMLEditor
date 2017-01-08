@@ -1,9 +1,9 @@
-package umlMode;
+package mode.component;
 
 import javafx.scene.input.MouseEvent;
-import umlObject.SelectionArea;
-import umlObject.UmlObject;
-import umlObject.UmlUseCase;
+import object.SelectionArea;
+import object.UmlObject;
+import object.umlShape.UmlUseCase;
 
 import java.util.List;
 

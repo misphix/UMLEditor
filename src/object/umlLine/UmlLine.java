@@ -1,8 +1,11 @@
-package umlObject;
+package object.umlLine;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import object.Constants;
+import object.Port;
+import object.UmlObject;
 
 public class UmlLine extends UmlObject {
     Port start;

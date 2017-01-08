@@ -1,4 +1,4 @@
-package umlObject;
+package object;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -6,8 +6,8 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.List;
 
 public abstract class UmlObject {
-    String name;
-    double x, y, width, height;
+    protected String name;
+    protected double x, y, width, height;
 
     public String getName() {
         return name;

@@ -1,8 +1,9 @@
-package umlObject;
+package object.umlShape;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import object.UmlObject;
 
 import java.util.List;
 

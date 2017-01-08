@@ -1,8 +1,10 @@
-package umlMode;
+package mode.connection;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
-import umlObject.*;
+import mode.UmlMode;
+import object.*;
+import object.umlLine.UmlLine;
 
 import java.util.List;
 
@@ -26,7 +28,7 @@ abstract class ConnectionMode extends UmlMode {
             }
             startObject = object;
             start = object.getClosestPort(pressedPoint);
-            end = start;
+            end = new Port(event.getX(), event.getY());
         } catch (NullPointerException e) {
             resetLine();
         }

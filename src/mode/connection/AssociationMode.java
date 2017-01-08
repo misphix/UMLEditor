@@ -1,8 +1,8 @@
-package umlMode;
+package mode.connection;
 
 import javafx.scene.input.MouseEvent;
-import umlObject.UmlLine;
-import umlObject.UmlObject;
+import object.umlLine.UmlLine;
+import object.UmlObject;
 
 import java.util.List;
 

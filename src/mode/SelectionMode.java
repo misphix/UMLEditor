@@ -1,11 +1,11 @@
-package umlMode;
+package mode;
 
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
-import umlObject.SelectionArea;
-import umlObject.UmlObject;
+import object.SelectionArea;
+import object.UmlObject;
 
 import java.util.ArrayList;
 import java.util.List;
