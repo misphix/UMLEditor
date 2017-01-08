@@ -10,7 +10,7 @@
 <?import javafx.scene.canvas.Canvas?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity" stylesheets="@MainPage.css"
+            minHeight="-Infinity" minWidth="-Infinity" stylesheets="@UmlEditor.css"
             xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="application.Controller">
     <top>
