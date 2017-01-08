@@ -29,6 +29,7 @@ public class UmlUseCase extends UmlShape {
 
     private void drawUseCase(GraphicsContext gc) {
         gc.setFill(Color.AQUAMARINE);
+        gc.setStroke(Color.BLACK);
         gc.fillOval(x, y, width, height);
         gc.strokeOval(x, y, width, height);
 

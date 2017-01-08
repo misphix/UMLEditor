@@ -28,6 +28,7 @@ public class UmlClass extends UmlShape {
 
     private void drawClassDiagram(GraphicsContext gc) {
         gc.setFill(Color.AQUAMARINE);
+        gc.setStroke(Color.BLACK);
         gc.fillRect(x, y, width, CLASS_NAME_HEIGHT); // draw class name field
         gc.strokeRect(x, y, width, CLASS_NAME_HEIGHT);
         gc.fillRect(x, y + CLASS_NAME_HEIGHT, width, PROPERTY_HEIGHT); // draw class property field

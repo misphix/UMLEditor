@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class UmlShape extends UmlObject {
-    double width, height;
     List<Port> ports = new ArrayList<>();
     BooleanProperty isSelected = new SimpleBooleanProperty(false);
 
@@ -38,12 +37,6 @@ public abstract class UmlShape extends UmlObject {
     @Override
     public boolean contain(Point2D pos) {
         return (pos.getX() > x && pos.getX() < x + width && pos.getY() > y && pos.getY() < y + height);
-    }
-
-    @Override
-    public boolean contain(Point2D start, Point2D end) {
-        // TODO
-        return false;
     }
 
     void portsInitialize() {

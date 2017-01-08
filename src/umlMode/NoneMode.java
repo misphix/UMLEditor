@@ -1,6 +1,7 @@
 package umlMode;
 
 import javafx.scene.input.MouseEvent;
+import umlObject.SelectionArea;
 import umlObject.UmlObject;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class NoneMode extends UmlMode {
     }
 
     @Override
-    public void mouseReleasedEvent(MouseEvent event) {
+    public void mouseReleasedEvent(MouseEvent event, SelectionArea selectionArea) {
         // FIXME
         System.out.println("None");
     }

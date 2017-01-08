@@ -10,6 +10,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import umlMode.*;
+import umlObject.SelectionArea;
 import umlObject.UmlObject;
 
 import java.net.URL;
@@ -21,6 +22,7 @@ public class Controller implements Initializable {
     private UmlMode mode = noneMode;
     private List<ControlButton> buttons = new ArrayList<>();
     private final ToggleGroup BUTTON_GROUP = new ToggleGroup();
+    private final SelectionArea selectionArea = new SelectionArea();
     private AnimationTimer drawer;
     @FXML
     private VBox vBox;
@@ -52,6 +54,8 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         addButtons();
         setDrawer();
+        drawer.start();
+        canvas.getBoundsInParent();
     }
 
     private void addButtons() {
@@ -77,23 +81,23 @@ public class Controller implements Initializable {
                 for (UmlObject obj : elements) {
                     obj.draw(canvas.getGraphicsContext2D());
                 }
+                selectionArea.draw(canvas.getGraphicsContext2D());
             }
         };
-        drawer.start();
     }
 
     @FXML
     private void mousePressed(MouseEvent event) {
-        mode.mousePressEvent(event);
+        mode.mousePressEvent(event, selectionArea);
     }
 
     @FXML
     private void mouseDragged(MouseEvent event) {
-        mode.mouseDraggedEvent(event);
+        mode.mouseDraggedEvent(event, selectionArea);
     }
 
     @FXML
     private void mouseReleased(MouseEvent event) {
-        mode.mouseReleasedEvent(event);
+        mode.mouseReleasedEvent(event, selectionArea);
     }
 }

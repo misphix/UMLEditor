@@ -5,7 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 
 public abstract class UmlObject {
     String name;
-    double x, y;
+    double x, y, width, height;
+    ;
 
     public String getName() {
         return name;
@@ -19,13 +20,21 @@ public abstract class UmlObject {
 
     }
 
+    public double getX() {
+
+        return x;
+    }
+
     public double getY() {
         return y;
     }
 
-    public double getX() {
+    public double getWidth() {
+        return width;
+    }
 
-        return x;
+    public double getHeight() {
+        return height;
     }
 
     public void movePosition(double dx, double dy) {
@@ -34,9 +43,12 @@ public abstract class UmlObject {
     }
 
     public abstract void draw(GraphicsContext gc);
+
     public abstract void beSelected();
+
     public abstract void unSelected();
+
     public abstract boolean isSelected();
+
     public abstract boolean contain(Point2D pos);
-    public abstract boolean contain(Point2D start, Point2D end);
 }

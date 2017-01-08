@@ -1,6 +1,7 @@
 package umlMode;
 
 import javafx.scene.input.MouseEvent;
+import umlObject.SelectionArea;
 import umlObject.UmlObject;
 import umlObject.UmlUseCase;
 
@@ -12,7 +13,7 @@ public class UseCaseMode extends UmlMode {
     }
 
     @Override
-    public void mouseReleasedEvent(MouseEvent event) {
+    public void mouseReleasedEvent(MouseEvent event, SelectionArea selectionArea) {
         UmlUseCase newUseCase = new UmlUseCase(event.getX(), event.getY());
         elements.add(newUseCase);
     }
