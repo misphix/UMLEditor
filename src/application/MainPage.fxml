@@ -29,13 +29,10 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem fx:id="group" mnemonicParsing="false" text="Group"
-                                  disable="true"/>
-                        <MenuItem fx:id="ungroup" mnemonicParsing="false" text="UnGroup"
-                                  disable="true"/>
+                        <MenuItem fx:id="group" mnemonicParsing="false" text="Group" onAction="#group"/>
+                        <MenuItem fx:id="ungroup" mnemonicParsing="false" text="UnGroup" onAction="#ungroup"/>
                         <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem fx:id="property" mnemonicParsing="false" text="Property"
-                                  disable="true"/>
+                        <MenuItem fx:id="property" mnemonicParsing="false" text="Property"/>
                     </items>
                 </Menu>
             </menus>

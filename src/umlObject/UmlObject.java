@@ -3,6 +3,8 @@ package umlObject;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.util.List;
+
 public abstract class UmlObject {
     String name;
     double x, y, width, height;
@@ -14,10 +16,6 @@ public abstract class UmlObject {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void ungroup() {
-
     }
 
     public double getX() {
@@ -40,6 +38,10 @@ public abstract class UmlObject {
     public void movePosition(double dx, double dy) {
         x += dx;
         y += dy;
+    }
+
+    public List<UmlObject> ungroup() {
+        return null;
     }
 
     public abstract void draw(GraphicsContext gc);

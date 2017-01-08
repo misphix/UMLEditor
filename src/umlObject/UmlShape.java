@@ -9,21 +9,21 @@ import java.util.List;
 
 public abstract class UmlShape extends UmlObject {
     List<Port> ports = new ArrayList<>();
-    BooleanProperty isSelected = new SimpleBooleanProperty(false);
+    private BooleanProperty selected = new SimpleBooleanProperty(false);
 
     @Override
     public void beSelected() {
-        isSelected.set(true);
+        selected.set(true);
     }
 
     @Override
     public void unSelected() {
-        isSelected.set(false);
+        selected.set(false);
     }
 
     @Override
     public boolean isSelected() {
-        return isSelected.get();
+        return selected.get();
     }
 
     @Override
@@ -40,10 +40,10 @@ public abstract class UmlShape extends UmlObject {
     }
 
     void portsInitialize() {
-        Port up = new Port(x + width / 2 - Constants.PORT_WIDTH / 2, y - Constants.PORT_WIDTH / 2, isSelected);
-        Port left = new Port(x - Constants.PORT_WIDTH / 2, y + height / 2 - Constants.PORT_WIDTH / 2, isSelected);
-        Port right = new Port(x + width - Constants.PORT_WIDTH / 2, y + height / 2 - Constants.PORT_WIDTH / 2, isSelected);
-        Port down = new Port(x + width / 2 - Constants.PORT_WIDTH / 2, y + height - Constants.PORT_WIDTH / 2, isSelected);
+        Port up = new Port(x + width / 2 - Constants.PORT_WIDTH / 2, y - Constants.PORT_WIDTH / 2, selected);
+        Port left = new Port(x - Constants.PORT_WIDTH / 2, y + height / 2 - Constants.PORT_WIDTH / 2, selected);
+        Port right = new Port(x + width - Constants.PORT_WIDTH / 2, y + height / 2 - Constants.PORT_WIDTH / 2, selected);
+        Port down = new Port(x + width / 2 - Constants.PORT_WIDTH / 2, y + height - Constants.PORT_WIDTH / 2, selected);
         ports.add(up);
         ports.add(left);
         ports.add(right);
