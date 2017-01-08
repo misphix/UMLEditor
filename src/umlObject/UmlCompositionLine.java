@@ -4,7 +4,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.transform.Rotate;
 
 public class UmlCompositionLine extends UmlLine {
-    private final double width = 10;
 
     public UmlCompositionLine(Port start, Port end) {
         super(start, end);
@@ -12,6 +11,7 @@ public class UmlCompositionLine extends UmlLine {
 
     @Override
     public void draw(GraphicsContext gc) {
+        double width = 10;
         super.draw(gc);
 
         gc.save();

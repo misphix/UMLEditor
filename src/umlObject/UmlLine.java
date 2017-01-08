@@ -5,7 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class UmlLine extends UmlObject {
-    Port start, end;
+    Port start;
+    private Port end;
 
     public UmlLine(Port start, Port end) {
         assert start != null : "Port's start shouldn't be null";

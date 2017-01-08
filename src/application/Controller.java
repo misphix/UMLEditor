@@ -1,6 +1,7 @@
 package application;
 
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
@@ -186,5 +187,10 @@ public class Controller implements Initializable {
         } else {
             alertBox("Rename Warning", "You have to select just one UML object");
         }
+    }
+
+    @FXML
+    private void exit() {
+        Platform.exit();
     }
 }

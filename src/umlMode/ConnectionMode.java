@@ -8,7 +8,7 @@ import java.util.List;
 
 abstract class ConnectionMode extends UmlMode {
     UmlLine currentLine = null;
-    UmlObject startObject = null;
+    private UmlObject startObject = null;
     Port start = null, end = null;
 
     ConnectionMode(List<UmlObject> elements) {

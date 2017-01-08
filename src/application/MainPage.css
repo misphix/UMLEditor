@@ -1,9 +1,11 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/*noinspection CssUnusedSymbol*/
 .toggle-button {
-	-fx-pref-width: 100px;
+    -fx-pref-width: 100px;
 }
 
+/*noinspection CssUnusedSymbol*/
 .scroll-pane {
-	-fx-pref-width: 100%;
-	-fx-pref-height: 100%;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
 }
