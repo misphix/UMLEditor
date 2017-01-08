@@ -17,9 +17,6 @@ public abstract class UmlMode {
 
     }
 
-    public void mouseDraggedEvent(MouseEvent event, SelectionArea selectionArea) {
-
-    }
-
+    public abstract void mouseDraggedEvent(MouseEvent event, SelectionArea selectionArea);
     public abstract void mouseReleasedEvent(MouseEvent event, SelectionArea selectionArea);
 }

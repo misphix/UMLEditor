@@ -6,19 +6,13 @@ import umlObject.UmlObject;
 
 import java.util.List;
 
-public class NoneMode extends UmlMode {
-    public NoneMode(List<UmlObject> elements) {
+abstract class ComponentMode extends UmlMode {
+    ComponentMode(List<UmlObject> elements) {
         super(elements);
     }
 
     @Override
     public void mouseDraggedEvent(MouseEvent event, SelectionArea selectionArea) {
 
-    }
-
-    @Override
-    public void mouseReleasedEvent(MouseEvent event, SelectionArea selectionArea) {
-        // FIXME
-        System.out.println("None");
     }
 }

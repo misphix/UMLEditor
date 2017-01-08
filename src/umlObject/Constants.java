@@ -1,5 +1,5 @@
 package umlObject;
 
-class Constants {
-    static final double PORT_WIDTH = 10;
+public class Constants {
+    public static final double PORT_WIDTH = 10;
 }

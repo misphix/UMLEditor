@@ -7,7 +7,7 @@ import umlObject.UmlObject;
 
 import java.util.List;
 
-public class ClassMode extends UmlMode {
+public class ClassMode extends ComponentMode {
     public ClassMode(List<UmlObject> elements) {
         super(elements);
     }

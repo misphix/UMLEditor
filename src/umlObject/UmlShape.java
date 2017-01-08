@@ -39,6 +39,21 @@ public abstract class UmlShape extends UmlObject {
         return (pos.getX() > x && pos.getX() < x + width && pos.getY() > y && pos.getY() < y + height);
     }
 
+    @Override
+    public Port getClosestPort(Point2D target) {
+        double distance = Double.MAX_VALUE;
+        Port closestPort = null;
+
+        for (Port port : ports) {
+            if (port.distance(target) < distance) {
+                distance = port.distance(target);
+                closestPort = port;
+            }
+        }
+
+        return closestPort;
+    }
+
     void portsInitialize() {
         Port up = new Port(x + width / 2 - Constants.PORT_WIDTH / 2, y - Constants.PORT_WIDTH / 2, selected);
         Port left = new Port(x - Constants.PORT_WIDTH / 2, y + height / 2 - Constants.PORT_WIDTH / 2, selected);

@@ -7,7 +7,7 @@ import umlObject.UmlUseCase;
 
 import java.util.List;
 
-public class UseCaseMode extends UmlMode {
+public class UseCaseMode extends ComponentMode {
     public UseCaseMode(List<UmlObject> elements) {
         super(elements);
     }

@@ -43,6 +43,10 @@ public abstract class UmlObject {
         return null;
     }
 
+    public Port getClosestPort(Point2D target) {
+        return null;
+    }
+
     public abstract void draw(GraphicsContext gc);
 
     public abstract void beSelected();
