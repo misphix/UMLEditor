@@ -59,14 +59,20 @@ public class SelectionMode extends UmlMode {
         if (getSelectedObjects().size() > 0) {
             moveSelectedObject(event);
         } else {
-            double width = event.getX() - startPoint.getX();
-            double height = event.getY() - startPoint.getY();
-
-            selectionArea.setVisible(true);
-            selectionArea.setPosition(startPoint.getX(), startPoint.getY());
-            selectionArea.setWidth(width);
-            selectionArea.setHeight(height);
+            setSelectionArea(event, selectionArea);
         }
+    }
+
+    private void setSelectionArea(MouseEvent event, SelectionArea selectionArea) {
+        double dx = event.getX() - startPoint.getX();
+        double dy = event.getY() - startPoint.getY();
+        double startX = (dx < 0) ? event.getX() : startPoint.getX();
+        double startY = (dy < 0) ? event.getY() : startPoint.getY();
+
+        selectionArea.setVisible(true);
+        selectionArea.setPosition(startX, startY);
+        selectionArea.setWidth(Math.abs(dx));
+        selectionArea.setHeight(Math.abs(dy));
     }
 
     private void moveSelectedObject(MouseEvent event) {
