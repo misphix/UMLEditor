@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class UmlLine extends UmlObject {
-    private Port start, end;
+    Port start, end;
 
     public UmlLine(Port start, Port end) {
         assert start != null : "Port's start shouldn't be null";
@@ -19,10 +19,26 @@ public class UmlLine extends UmlObject {
         this.end = end;
     }
 
+    double getAngle() {
+        double angle = Math.toDegrees(Math.atan2(end.getY() - start.getY(), end.getX() - start.getX()));
+
+        if(angle < 0){
+            angle += 360;
+        }
+
+        return angle;
+    }
+
     @Override
     public void draw(GraphicsContext gc) {
         gc.setStroke(Color.BLACK);
-        gc.strokeLine(start.getX() + Constants.PORT_WIDTH / 2, start.getY() + Constants.PORT_WIDTH / 2, end.getX() + Constants.PORT_WIDTH / 2, end.getY() + Constants.PORT_WIDTH / 2);
+        gc.setFill(Color.BLACK);
+
+        double startX = start.getX() + Constants.PORT_WIDTH / 2;
+        double startY = start.getY() + Constants.PORT_WIDTH / 2;
+        double endX = end.getX() + Constants.PORT_WIDTH / 2;
+        double endY = end.getY() + Constants.PORT_WIDTH / 2;
+        gc.strokeLine(startX, startY, endX, endY);
     }
 
     @Override
