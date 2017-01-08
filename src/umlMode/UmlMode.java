@@ -9,11 +9,11 @@ import java.util.List;
 public abstract class UmlMode {
     final List<UmlObject> elements;
 
-    public UmlMode(List<UmlObject> elements) {
+    UmlMode(List<UmlObject> elements) {
         this.elements = elements;
     }
 
-    public void mousePressEvent(MouseEvent event, SelectionArea selectionArea) {
+    public void mousePressEvent(MouseEvent event) {
 
     }
 

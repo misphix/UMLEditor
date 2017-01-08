@@ -18,7 +18,7 @@ public class SelectionMode extends UmlMode {
     }
 
     @Override
-    public void mousePressEvent(MouseEvent event, SelectionArea selectionArea) {
+    public void mousePressEvent(MouseEvent event) {
         startPoint = new Point2D(event.getX(), event.getY());
         previousMousePoint = startPoint;
 

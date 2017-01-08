@@ -15,35 +15,31 @@
             fx:controller="application.Controller">
     <top>
         <MenuBar prefWidth="100.0" BorderPane.alignment="CENTER">
-            <menus>
-                <Menu mnemonicParsing="false" text="File">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="New"/>
-                        <MenuItem mnemonicParsing="false" text="Open File..."/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Save"/>
-                        <MenuItem mnemonicParsing="false" text="Save As"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Exit"/>
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem fx:id="group" mnemonicParsing="false" text="Group" onAction="#group"/>
-                        <MenuItem fx:id="ungroup" mnemonicParsing="false" text="UnGroup" onAction="#ungroup"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem fx:id="property" mnemonicParsing="false" text="Property"/>
-                    </items>
-                </Menu>
-            </menus>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="New"/>
+                    <MenuItem mnemonicParsing="false" text="Open File..."/>
+                    <SeparatorMenuItem mnemonicParsing="false"/>
+                    <MenuItem mnemonicParsing="false" text="Save"/>
+                    <MenuItem mnemonicParsing="false" text="Save As"/>
+                    <SeparatorMenuItem mnemonicParsing="false"/>
+                    <MenuItem mnemonicParsing="false" text="Exit"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Group" onAction="#group"/>
+                    <MenuItem mnemonicParsing="false" text="UnGroup" onAction="#ungroup"/>
+                    <SeparatorMenuItem mnemonicParsing="false"/>
+                    <MenuItem mnemonicParsing="false" text="Rename" onAction="#rename"/>
+                </items>
+            </Menu>
         </MenuBar>
     </top>
     <center>
         <ScrollPane BorderPane.alignment="CENTER">
-            <content>
-                <Canvas fx:id="canvas" width="1920" height="1080" onMousePressed="#mousePressed"
-                        onMouseDragged="#mouseDragged" onMouseReleased="#mouseReleased"/>
-            </content>
+            <Canvas fx:id="canvas" width="1920" height="1080" onMousePressed="#mousePressed"
+                    onMouseDragged="#mouseDragged" onMouseReleased="#mouseReleased"/>
         </ScrollPane>
     </center>
     <left>

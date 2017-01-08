@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 class Port {
-    private BooleanBinding visible;
+    private final BooleanBinding visible;
     private double x, y;
 
     Port(double x,double y, BooleanProperty visibleBind) {

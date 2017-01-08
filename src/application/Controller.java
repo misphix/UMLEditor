@@ -3,6 +3,7 @@ package application;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
 import uiObject.ControlButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,9 +21,9 @@ import java.util.*;
 
 public class Controller implements Initializable {
     private final List<UmlObject> elements = new ArrayList<>();
-    private UmlMode noneMode = new NoneMode(elements);
+    private final UmlMode noneMode = new NoneMode(elements);
     private UmlMode mode = noneMode;
-    private List<ControlButton> buttons = new ArrayList<>();
+    private final List<ControlButton> buttons = new ArrayList<>();
     private final ToggleGroup BUTTON_GROUP = new ToggleGroup();
     private final SelectionArea selectionArea = new SelectionArea();
     private AnimationTimer drawer;
@@ -63,6 +64,7 @@ public class Controller implements Initializable {
     private void addButtons() {
         vBox.getChildren().addAll(buttons);
         BUTTON_GROUP.selectedToggleProperty().addListener((event) -> {
+            unSelectAll();
             for (ControlButton btn : buttons) {
                 if (btn.isSelected()) {
                     mode = btn.getMode();
@@ -71,6 +73,12 @@ public class Controller implements Initializable {
             }
             mode = noneMode;
         });
+    }
+
+    private void unSelectAll() {
+        for (UmlObject object : elements) {
+            object.unSelected();
+        }
     }
 
     private void setDrawer() {
@@ -90,7 +98,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void mousePressed(MouseEvent event) {
-        mode.mousePressEvent(event, selectionArea);
+        mode.mousePressEvent(event);
     }
 
     @FXML
@@ -159,5 +167,24 @@ public class Controller implements Initializable {
         alert.setContentText(content);
 
         alert.show();
+    }
+
+    @FXML
+    private void rename() {
+        List<UmlObject> selectedObjects = getSelectedObjects();
+        if (selectedObjects.size() == 1) {
+            UmlObject object = selectedObjects.get(0);
+
+            TextInputDialog dialog = new TextInputDialog(object.getName());
+            dialog.setTitle("Rename");
+            dialog.setHeaderText(null);
+            dialog.setContentText("Name:");
+
+            //noinspection Convert2MethodRef
+            dialog.showAndWait().ifPresent((String name) -> object.setName(name));
+
+        } else {
+            alertBox("Rename Warning", "You have to select just one UML object");
+        }
     }
 }

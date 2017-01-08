@@ -4,12 +4,7 @@ import javafx.scene.control.ToggleButton;
 import umlMode.UmlMode;
 
 public class ControlButton extends ToggleButton {
-    private UmlMode mode;
-
-    public ControlButton(String text) {
-        super(text);
-        mode = null;
-    }
+    private final UmlMode mode;
 
     public ControlButton(String text, UmlMode mode) {
         super(text);

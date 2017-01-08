@@ -19,6 +19,6 @@ public class CompositionMode extends UmlMode {
     @Override
     public void mouseReleasedEvent(MouseEvent event, SelectionArea selectionArea) {
         // TODO
-        System.out.println("Compositon");
+        System.out.println("Composition");
     }
 }

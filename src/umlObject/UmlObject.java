@@ -8,7 +8,6 @@ import java.util.List;
 public abstract class UmlObject {
     String name;
     double x, y, width, height;
-    ;
 
     public String getName() {
         return name;

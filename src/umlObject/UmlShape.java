@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class UmlShape extends UmlObject {
-    List<Port> ports = new ArrayList<>();
-    private BooleanProperty selected = new SimpleBooleanProperty(false);
+    final List<Port> ports = new ArrayList<>();
+    private final BooleanProperty selected = new SimpleBooleanProperty(false);
 
     @Override
     public void beSelected() {
