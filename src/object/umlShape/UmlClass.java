@@ -37,8 +37,6 @@ public class UmlClass extends UmlShape {
         gc.fillRect(x, y + CLASS_NAME_HEIGHT + METHOD_HEIGHT, width, METHOD_HEIGHT); //draw class method field
         gc.strokeRect(x, y + CLASS_NAME_HEIGHT + METHOD_HEIGHT, width, METHOD_HEIGHT);
 
-        gc.setTextAlign(TextAlignment.CENTER);
-        gc.setTextBaseline(VPos.CENTER);
-        gc.strokeText(name, x + width / 2, y + CLASS_NAME_HEIGHT / 2);
+        writeName(gc, CLASS_NAME_HEIGHT);
     }
 }

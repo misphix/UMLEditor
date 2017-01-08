@@ -3,6 +3,9 @@ package object.umlShape;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Point2D;
+import javafx.geometry.VPos;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.text.TextAlignment;
 import object.Constants;
 import object.Port;
 import object.UmlObject;
@@ -13,6 +16,12 @@ import java.util.List;
 public abstract class UmlShape extends UmlObject {
     final List<Port> ports = new ArrayList<>();
     private final BooleanProperty selected = new SimpleBooleanProperty(false);
+
+    void writeName(GraphicsContext gc, double height) {
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.setTextBaseline(VPos.CENTER);
+        gc.strokeText(name, x + width / 2, y + height / 2);
+    }
 
     @Override
     public void beSelected() {

@@ -34,8 +34,6 @@ public class UmlUseCase extends UmlShape {
         gc.fillOval(x, y, width, height);
         gc.strokeOval(x, y, width, height);
 
-        gc.setTextAlign(TextAlignment.CENTER);
-        gc.setTextBaseline(VPos.CENTER);
-        gc.strokeText(name, x + width / 2, y + height / 2);
+        writeName(gc, height);
     }
 }
