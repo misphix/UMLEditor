@@ -2,7 +2,7 @@ package mode.component;
 
 import javafx.scene.input.MouseEvent;
 import object.SelectionArea;
-import object.umlShape.UmlClass;
+import object.shape.UmlClass;
 import object.UmlObject;
 
 import java.util.List;

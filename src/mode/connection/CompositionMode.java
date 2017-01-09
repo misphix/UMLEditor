@@ -1,7 +1,7 @@
 package mode.connection;
 
 import javafx.scene.input.MouseEvent;
-import object.umlLine.UmlCompositionLine;
+import object.line.UmlCompositionLine;
 import object.UmlObject;
 
 import java.util.List;

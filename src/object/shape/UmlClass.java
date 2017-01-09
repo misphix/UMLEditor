@@ -1,9 +1,7 @@
-package object.umlShape;
+package object.shape;
 
-import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 import object.Port;
 
 public class UmlClass extends UmlShape {

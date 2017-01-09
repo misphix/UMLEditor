@@ -4,7 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
 import mode.UmlMode;
 import object.*;
-import object.umlLine.UmlLine;
+import object.line.UmlLine;
 
 import java.util.List;
 

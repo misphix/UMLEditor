@@ -19,7 +19,7 @@ import mode.connection.AssociationMode;
 import mode.connection.CompositionMode;
 import mode.connection.GeneralizationMode;
 import object.SelectionArea;
-import object.umlShape.UmlGroup;
+import object.shape.UmlGroup;
 import object.UmlObject;
 
 import java.net.URL;

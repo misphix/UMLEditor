@@ -1,4 +1,4 @@
-package object.umlLine;
+package object.line;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
